@@ -11,6 +11,6 @@ ARG GOARCH=amd64
 RUN go build -ldflags="-s -w -extldflags \"-static\"" -o /go/bin/gcp-cookie-signer main.go
 
 FROM scratch
-COPY --from=build /go/bin/gcp-cookie-signer /usr/bin/gcp-cookie-signer
+COPY --from=builder /go/bin/gcp-cookie-signer /usr/bin/gcp-cookie-signer
 
 ENTRYPOINT ["/usr/bin/gcp-cookie-signer"]
